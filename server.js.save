@@ -19,12 +19,11 @@ app.use(cors({
 }));
 app.use(express.json());
 
-const { HttpsProxyAgent } = require('https-proxy-agent');
-const proxyAgent = new HttpsProxyAgent('http://0rX0Jv:dMjJJ6@196.18.15.58:8000');
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY, {
-  fetchOptions: { agent: proxyAgent }
-});
+
+// БЕЗ ПРОКСИ! WireGuard уже подключен на системном уровне
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || '');
+
 function createSystemPrompt() {
   return `Ты — профессиональный ИТ-Консультант.
 Компания: ИТ-Консультант. Слоган: Единственный подрядчик. Комплексная ИТ-поддержка бизнеса.`;
