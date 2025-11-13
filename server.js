@@ -9,14 +9,18 @@ const PORT = process.env.PORT || 3000;
 // Middleware
 app.use(cors({
     origin: [
-        'http://consultant-it.ru', 
         'https://consultant-it.ru',
-        'http://www.consultant-it.ru',
         'https://www.consultant-it.ru',
-        'http://213.226.127.186', 
-        'http://localhost'
+        'http://consultant-it.ru',
+        'http://www.consultant-it.ru',
+        'https://api.consultant-it.ru',
+        'http://213.226.127.186:3000',
+        'http://localhost:3000'
     ],
-    credentials: true
+    credentials: true,
+    methods: ['GET', 'POST', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    optionsSuccessStatus: 200
 }));
 app.use(express.json());
 
